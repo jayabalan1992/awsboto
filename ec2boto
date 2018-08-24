@@ -1,0 +1,9 @@
+import boto3, time
+ec2=boto3.resource("ec2")
+ec2.create_instances(ImageId='ami-0532d16c', MinCount=1, MaxCount=3)
+print("Creating EC2 instances")
+time.sleep(45)
+for status in ec2.meta.client.describe_instance_status()['InstanceStatuses']:
+    print(status)
+
+
